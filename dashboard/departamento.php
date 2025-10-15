@@ -81,6 +81,9 @@ try {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo URL_BASE; ?>assets/css/dashboard.css">
     <link rel="stylesheet" href="<?php echo URL_BASE; ?>assets/css/formularios.css">
+    
+    <!-- Sistema de notificaciones -->
+    <script src="<?php echo URL_BASE; ?>assets/js/notificaciones.js" defer></script>
 </head>
 <body>
     
@@ -155,6 +158,9 @@ try {
                         </p>
                     </div>
                     <div class="user-info">
+                        <!-- Notificaciones -->
+                        <?php include __DIR__ . '/../includes/notificaciones_ui.php'; ?>
+                        
                         <span class="user-badge">
                             <i class="bi bi-building"></i>
                             <?php echo htmlspecialchars($departamento); ?>

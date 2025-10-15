@@ -82,6 +82,18 @@ try {
         $descripcion, $prioridad, $estado
     ]);
     
+    // ====================================
+    // ENVIAR NOTIFICACIÓN A TI
+    // ====================================
+    require_once __DIR__ . '/../includes/notificaciones.php';
+    
+    notificar_nueva_solicitud(
+        $folio,
+        $_SESSION['nombre_completo'],
+        $_SESSION['departamento_nombre'],
+        $prioridad
+    );
+    
     // Respuesta exitosa
     echo json_encode([
         'success' => true,

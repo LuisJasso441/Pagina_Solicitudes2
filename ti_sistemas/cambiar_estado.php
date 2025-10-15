@@ -74,6 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
         
+        // ====================================
+        // ENVIAR NOTIFICACIÓN AL SOLICITANTE
+        // ====================================
+        require_once __DIR__ . '/../includes/notificaciones.php';
+        
+        notificar_cambio_estado(
+            $folio,
+            $solicitud['usuario_id'],
+            $nuevo_estado,
+            $comentarios
+        );
+        
         establecer_alerta('success', 'Solicitud actualizada correctamente');
         redirigir(URL_BASE . 'solicitudes/ver.php?folio=' . urlencode($folio));
         

@@ -84,26 +84,8 @@ try {
     $stmt = $pdo->prepare("UPDATE usuarios SET ultimo_acceso = NOW() WHERE id = ?");
     $stmt->execute([$usuario_db['id']]);
     
-    // DEBUG: Verificar funciones y departamento
-    $dept = $usuario_db['departamento'];
-    $func_existe = function_exists('es_departamento_colaborativo');
-    $es_colab = $func_existe ? es_departamento_colaborativo($dept) : 'ERROR';
-    $es_ti = function_exists('es_departamento_ti') ? es_departamento_ti($dept) : 'ERROR';
-    
-    error_log("=== DEBUG LOGIN ===");
-    error_log("Usuario: " . $usuario_db['usuario']);
-    error_log("Departamento: " . $dept);
-    error_log("Función existe: " . ($func_existe ? 'SI' : 'NO'));
-    error_log("Es colaborativo: " . ($es_colab ? 'SI' : 'NO'));
-    error_log("Es TI: " . ($es_ti ? 'SI' : 'NO'));
-    
     // Iniciar sesión del usuario
     iniciar_sesion_usuario($usuario_db);
-    
-    // DEBUG: Verificar valores de sesión
-    error_log("SESSION es_colaborativo: " . (isset($_SESSION['es_colaborativo']) ? ($_SESSION['es_colaborativo'] ? 'SI' : 'NO') : 'NO SET'));
-    error_log("SESSION es_ti: " . (isset($_SESSION['es_ti']) ? ($_SESSION['es_ti'] ? 'SI' : 'NO') : 'NO SET'));
-    error_log("==================");
     
     // Si marcó "Recordar", establecer cookie (opcional - implementar después)
     if ($recordar) {
